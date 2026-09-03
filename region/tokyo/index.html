@@ -42,15 +42,29 @@
 
       <section class="post-section">
         <h2>이 지역 글 목록</h2>
+
+        <div class="article-filters" hidden>
+          <div class="filter-row" role="group" aria-label="소지역 필터">
+            <button type="button" class="filter-pill is-active" data-filter-type="subarea" data-filter-value="all" aria-pressed="true">전체</button>
+            <button type="button" class="filter-pill" data-filter-type="subarea" data-filter-value="시모키타자와" aria-pressed="false">시모키타자와</button>
+          </div>
+          <div class="filter-row" role="group" aria-label="카테고리 필터">
+            <button type="button" class="filter-pill is-active" data-filter-type="category" data-filter-value="all" aria-pressed="true">전체</button>
+            <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="할것" aria-pressed="false">🗺️ 할 것</button>
+            <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="먹을것" aria-pressed="false">🍽️ 먹을 것</button>
+          </div>
+        </div>
+
         <div class="article-subgroup">
           <p class="article-subgroup-title">🗺️ 할 것</p>
           <ul class="article-list">
-            <li class="article-item is-pending">
+            <li class="article-item is-pending" data-subarea="시모키타자와" data-category="할것">
               <span>도쿄 시모키타자와 가볼만한곳 (빈티지샵&middot;카레거리&middot;소극장)</span>
               <span class="badge badge-pending">준비중</span>
             </li>
           </ul>
         </div>
+        <p class="article-empty-state" hidden>조건에 맞는 글이 아직 없습니다. 다른 필터를 선택해 보세요.</p>
       </section>
     </article>
   </main>
