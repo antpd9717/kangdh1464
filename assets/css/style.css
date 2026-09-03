@@ -50,6 +50,9 @@
 
   /* 레이아웃 */
   --content-max-width: 720px;
+  /* 사진/카드가 주가 되는 화면(홈, 지역 허브)은 더 넓은 폭을 사용해
+     텍스트 전용 화면과 리듬 차이를 준다 */
+  --content-max-width-wide: 1180px;
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -150,6 +153,27 @@ pre {
   margin: 0 auto;
   padding-left: var(--space-3);
   padding-right: var(--space-3);
+}
+
+/* 사진·카드가 중심인 화면(홈, 지역 허브)은 더 넓은 컬럼을 사용해
+   텍스트 전용 화면(소개/문의/글 본문)과 폭 차이로 리듬을 만든다.
+   문단 텍스트는 각 컴포넌트에 이미 ch 단위 max-width가 있어
+   컨테이너가 넓어져도 줄 길이는 그대로 유지된다. */
+.page-home .site-header,
+.page-home .site-main,
+.page-region .site-header,
+.page-region .site-main {
+  max-width: var(--content-max-width-wide);
+}
+
+/* 아주 넓은 화면에서는 완전한 중앙 정렬 대신 살짝 왼쪽으로 쏠리게 배치해
+   페이지 전체가 하나의 딱딱한 중앙 기둥처럼 보이지 않게 한다. */
+@media (min-width: 1300px) {
+  .site-header,
+  .site-main {
+    margin-left: clamp(var(--space-3), 4vw, 8rem);
+    margin-right: auto;
+  }
 }
 
 .site-header {
@@ -473,6 +497,54 @@ a:focus-visible,
   gap: var(--space-3);
 }
 
+/* 넓은 화면에서는 완전히 균일한 격자 대신, 카드 폭에 강약을 준
+   매거진 스타일 비대칭 그리드로 전환한다 (기능·순서는 그대로,
+   시각적 크기 비율만 CSS로 조정). */
+@media (min-width: 860px) {
+  .region-grid {
+    grid-template-columns: repeat(6, 1fr);
+    align-items: start;
+  }
+
+  .region-grid .region-card:nth-child(1) {
+    grid-column: span 4;
+  }
+
+  .region-grid .region-card:nth-child(1) h3 {
+    font-size: 1.3rem;
+  }
+
+  .region-grid .region-card:nth-child(1) .region-card-body {
+    padding: var(--space-3) var(--space-3) var(--space-4);
+  }
+
+  .region-grid .region-card:nth-child(2) {
+    grid-column: span 2;
+  }
+
+  .region-grid .region-card:nth-child(3),
+  .region-grid .region-card:nth-child(4),
+  .region-grid .region-card:nth-child(5) {
+    grid-column: span 2;
+  }
+
+  .region-grid .region-card:nth-child(3) .region-card-media {
+    aspect-ratio: 1 / 1;
+  }
+
+  .region-grid .region-card:nth-child(5) .region-card-media {
+    aspect-ratio: 3 / 4;
+  }
+
+  .region-grid .region-card:nth-child(6) {
+    grid-column: span 6;
+  }
+
+  .region-grid .region-card:nth-child(6) .region-card-media {
+    aspect-ratio: 21 / 8;
+  }
+}
+
 /* 지역 카드: 마이리얼트립 스타일 — 실사 사진 썸네일이 시각적 무게 중심,
    텍스트는 사진 아래 얇은 영역에 정리한다. */
 .region-card {
@@ -665,6 +737,19 @@ a:focus-visible,
   background-color: var(--color-surface-alt);
   object-fit: cover;
   box-shadow: var(--shadow-sm);
+}
+
+/* 지역 허브 페이지: 히어로 사진은 넓어진 컨테이너 폭을 그대로 채우고,
+   제목·목록 등 읽는 영역은 좁은 컬럼으로 다시 줄여 왼쪽으로 붙인다.
+   (가운데 정렬 대신 사진 왼쪽 끝에 맞춰 자연스러운 리듬을 만든다) */
+@media (min-width: 860px) {
+  .page-region .post-header,
+  .page-region .post-section,
+  .page-region .post-footer {
+    max-width: 640px;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .post-region {
