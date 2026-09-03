@@ -3,21 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>사이트 준비 중</title>
-  <meta name="description" content="콘텐츠 준비 중입니다.">
+  <title>일본 지역별 여행 정보 | 가볼만한 곳 &amp; 맛집 가이드</title>
+  <meta name="description" content="오사카, 후쿠오카, 도쿄, 오키나와, 삿포로 등 일본 지역별 가볼만한 곳과 맛집 정보를 소개합니다.">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <header class="site-header">
-    <h1>사이트 준비 중</h1>
+    <div class="site-header-inner">
+      <a href="index.html" class="site-brand">일본 지역별 여행 정보</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="#regions">지역별 보기</a>
+        <a href="#articles">전체 글 목록</a>
+      </nav>
+    </div>
   </header>
 
   <main class="site-main">
-    <p>콘텐츠 준비 중입니다. 곧 새로운 소식으로 찾아뵙겠습니다.</p>
+    <section class="hero">
+      <h1>일본, 지역별로 제대로 준비하세요</h1>
+      <p>
+        오사카·후쿠오카·도쿄·오키나와·삿포로 등 일본 각 지역의
+        가볼만한 곳과 맛집 정보를 실전 동선 중심으로 정리합니다.
+        넓은 관광지 소개보다는, 특정 상황·시간대·테마에 맞춘
+        좁고 구체적인 정보를 목표로 합니다.
+      </p>
+    </section>
+
+    <section id="regions" class="regions-section">
+      <h2>지역별로 둘러보기</h2>
+      <div class="region-grid">
+        <article class="region-card">
+          <h3>간사이 (오사카)</h3>
+          <p>오사카를 중심으로 한 시내 여행 정보와 근교 당일치기 코스.</p>
+        </article>
+        <article class="region-card">
+          <h3>세토내해 &middot; 호쿠리쿠 (나오시마 &middot; 가나자와)</h3>
+          <p>오사카에서 다녀올 수 있는 예술섬과 세컨 시티 여행 정보.</p>
+        </article>
+        <article class="region-card">
+          <h3>규슈 (후쿠오카 &middot; 벳푸 &middot; 다자이후 &middot; 우레시노)</h3>
+          <p>후쿠오카를 거점으로 한 시내·온천·근교 당일치기 정보.</p>
+        </article>
+        <article class="region-card">
+          <h3>간토 (도쿄)</h3>
+          <p>메이저 관광지를 벗어난 동네 단위의 로컬 정보.</p>
+        </article>
+        <article class="region-card">
+          <h3>오키나와 (나하)</h3>
+          <p>국제거리를 중심으로 한 시내 여행 정보.</p>
+        </article>
+        <article class="region-card">
+          <h3>홋카이도 (삿포로)</h3>
+          <p>겨울 시즌 축제 동선 등 계절성 여행 정보.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="articles" class="articles-section">
+      <h2>콘텐츠 캘린더</h2>
+      <p class="section-note">
+        아래는 발행 예정 글 목록입니다. 발행된 글만 링크로 연결되며,
+        나머지는 순차적으로 작성 중입니다.
+      </p>
+      <ul class="article-list">
+        <li class="article-item is-published">
+          <a href="content/osaka-breakfast/index.html">오사카 우메다&middot;난바 아침 일찍 여는 조식 맛집 총정리</a>
+          <span class="badge badge-published">발행</span>
+        </li>
+        <li class="article-item is-published">
+          <a href="content/naoshima-day-trip/index.html">나오시마 당일치기 완벽 코스 (오사카&middot;타카마츠 출발)</a>
+          <span class="badge badge-published">발행</span>
+        </li>
+        <li class="article-item is-published">
+          <a href="content/ureshino-onsen/index.html">우레시노 온천 당일치기 가이드 (미인온천&middot;족탕&middot;온천두부)</a>
+          <span class="badge badge-published">발행</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>가나자와 2박3일 가볼만한곳 + 맛집 총정리 (오미초 시장 중심)</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>도쿄 시모키타자와 가볼만한곳 (빈티지샵&middot;카레거리&middot;소극장)</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>후쿠오카 8월 여행 실전 가이드 (폭염&middot;태풍&middot;오봉 성수기 대처법)</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>벳푸 당일치기 코스 (후쿠오카에서 지옥순례 + 온천)</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>오사카 비 오는 날 실내에서 즐길 수 있는 곳 총정리</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>다자이후 텐만구 우메가에모찌 맛집 비교 + 근처 가볼만한곳</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>오키나와 나하 국제거리 아침&middot;이른 시간대 맛집</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>후쿠오카 나카스 야타이 첫방문 실전 가이드 (자리잡기&middot;현금&middot;메뉴 주문법)</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>오사카&middot;고베 당일치기 (기타노이진칸 + 고베규 + 하버랜드)</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+        <li class="article-item is-pending">
+          <span>삿포로 눈축제 3대 회장(오도리&middot;스스키노&middot;쓰도무) 동선 총정리</span>
+          <span class="badge badge-pending">준비중</span>
+        </li>
+      </ul>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span></p>
+    <p>&copy; <span id="year"></span> 일본 지역별 여행 정보</p>
   </footer>
 
   <script src="assets/js/main.js"></script>

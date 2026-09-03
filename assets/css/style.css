@@ -120,7 +120,9 @@ pre {
   padding-bottom: var(--space-4);
 }
 
-.site-main p {
+/* 직계 자식으로 한정: 하위 컴포넌트(.region-card p, .placeholder-block 등)의
+   자체 스타일이 명시도 문제로 덮어써지지 않도록 함 */
+.site-main > p {
   margin: 0;
   font-size: var(--font-size-lg);
   color: var(--color-text-muted);
@@ -156,5 +158,227 @@ pre {
   .site-main {
     padding-top: var(--space-3);
     padding-bottom: var(--space-3);
+  }
+}
+
+/* ------------------------------------------------------------
+ * 사이트 구조 컴포넌트 (헤더 내비게이션 / 지역 카드 / 글 목록 / 글 페이지)
+ * 색상·타이포는 위에서 정의한 CSS 변수만 사용한다.
+ * ------------------------------------------------------------ */
+
+.site-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.site-brand {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+}
+
+.site-nav a:hover {
+  color: var(--color-accent);
+}
+
+.hero h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  margin: 0 0 var(--space-2);
+}
+
+.hero p {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+.regions-section,
+.articles-section {
+  margin-top: var(--space-4);
+}
+
+.regions-section h2,
+.articles-section h2 {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
+  margin: 0 0 var(--space-2);
+}
+
+.section-note {
+  margin: 0 0 var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+}
+
+.region-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  padding: var(--space-2);
+}
+
+.region-card h3 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-tight);
+}
+
+.region-card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.article-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.article-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.article-item a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.article-item a:hover {
+  color: var(--color-accent);
+}
+
+.article-item.is-pending span:first-child {
+  color: var(--color-text-muted);
+}
+
+.badge {
+  flex-shrink: 0;
+  font-size: var(--font-size-sm);
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.badge-published {
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.badge-pending {
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+/* 글(콘텐츠) 페이지 */
+
+.breadcrumb {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.breadcrumb a {
+  color: var(--color-text-muted);
+}
+
+.post-region {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.post-header h1 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+}
+
+.post-section {
+  margin-top: var(--space-3);
+}
+
+.post-section h2 {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
+  margin: 0 0 var(--space-1);
+}
+
+.placeholder-block {
+  margin: 0;
+  padding: var(--space-2);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+.post-footer {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.post-footer h2 {
+  font-size: var(--font-size-lg);
+  margin: 0 0 var(--space-1);
+}
+
+.related-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* 좁은 화면에서는 지역 카드 1열 */
+@media (max-width: 480px) {
+  .region-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-item {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
