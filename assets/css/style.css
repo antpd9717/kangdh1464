@@ -249,6 +249,98 @@ pre {
   font-size: var(--font-size-sm);
 }
 
+.map-intro {
+  margin: 0 0 var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* 일본 지도 (핀 클릭형 지역 선택) */
+.japan-map-wrap {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.japan-map {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.map-land {
+  fill: var(--color-accent-soft);
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.map-land-small {
+  stroke-width: 1.25;
+}
+
+.map-inset-box {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.map-inset-label {
+  font-size: 8px;
+  fill: var(--color-text-muted);
+  font-family: var(--font-sans);
+}
+
+.map-pin {
+  cursor: pointer;
+}
+
+.map-pin-circle {
+  fill: var(--color-accent-2);
+  stroke: var(--color-accent-contrast);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 2px 3px rgba(15, 46, 41, 0.25));
+  transition: transform 0.15s ease, fill 0.15s ease;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.map-pin-emoji {
+  font-size: 13px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+.map-pin:hover .map-pin-circle,
+.map-pin:focus-visible .map-pin-circle {
+  fill: var(--color-accent);
+  transform: scale(1.18);
+}
+
+.map-pin:focus-visible {
+  outline: none;
+}
+
+.map-pin:focus-visible .map-pin-circle {
+  stroke: var(--color-accent);
+  stroke-width: 2.5;
+}
+
+/* 좁은 화면에서는 지도가 클릭 정확도가 떨어지므로 숨기고,
+   카드 목록만 주 진입 수단으로 사용 (기능 손실 없음) */
+@media (max-width: 640px) {
+  .japan-map-wrap,
+  .map-intro {
+    display: none;
+  }
+}
+
 .region-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
