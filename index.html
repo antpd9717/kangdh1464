@@ -39,7 +39,7 @@
 
     <section id="regions" class="regions-section">
       <h2>지역별로 둘러보기</h2>
-      <p class="map-intro">지도에서 핀을 클릭하거나, 아래 카드에서 지역을 선택하세요.</p>
+      <p class="map-intro">지도에서 핀을 클릭하거나, 아래 카드에서 지역을 선택하면 해당 지역 페이지로 이동합니다.</p>
 
       <div class="japan-map-wrap">
         <svg
@@ -52,7 +52,7 @@
           <desc id="japan-map-desc">
             실제 일본 지도(퍼블릭 도메인 SVG 기반) 위에 오사카, 도쿄, 후쿠오카, 오키나와, 삿포로,
             나오시마·가나자와 6개 지역의 핀이 표시되어 있습니다. 각 핀을 클릭하면 해당
-            지역 카드로 이동합니다. 오키나와는 실제 위치가 지도 범위 밖에 있어 우측 하단에
+            지역 페이지로 이동합니다. 오키나와는 실제 위치가 지도 범위 밖에 있어 우측 하단에
             별도 인셋 박스로 표기했습니다.
           </desc>
 
@@ -81,43 +81,43 @@
           </g>
 
           <!-- 지역 핀 -->
-          <a href="#region-sapporo" class="map-pin" aria-label="홋카이도(삿포로) 지역으로 이동">
+          <a href="region/sapporo/index.html" class="map-pin" aria-label="홋카이도(삿포로) 지역으로 이동">
             <title>❄️ 홋카이도 (삿포로)</title>
             <circle cx="1470.35" cy="1393.67" r="25" class="map-pin-circle" />
             <text x="1470.35" y="1393.67" class="map-pin-emoji">❄️</text>
           </a>
 
-          <a href="#region-tokyo" class="map-pin" aria-label="간토(도쿄) 지역으로 이동">
+          <a href="region/tokyo/index.html" class="map-pin" aria-label="간토(도쿄) 지역으로 이동">
             <title>🗼 간토 (도쿄)</title>
             <circle cx="1405.15" cy="1764.61" r="25" class="map-pin-circle" />
             <text x="1405.15" y="1764.61" class="map-pin-emoji">🗼</text>
           </a>
 
-          <a href="#region-setouchi-hokuriku" class="map-pin" aria-label="가나자와(호쿠리쿠) 지역으로 이동">
+          <a href="region/setouchi-hokuriku/index.html" class="map-pin" aria-label="가나자와(호쿠리쿠) 지역으로 이동">
             <title>🎨 호쿠리쿠 (가나자와)</title>
             <circle cx="1282.7" cy="1750.97" r="25" class="map-pin-circle" />
             <text x="1282.7" y="1750.97" class="map-pin-emoji">🎨</text>
           </a>
 
-          <a href="#region-osaka" class="map-pin" aria-label="간사이(오사카) 지역으로 이동">
+          <a href="region/osaka/index.html" class="map-pin" aria-label="간사이(오사카) 지역으로 이동">
             <title>🏯 간사이 (오사카)</title>
             <circle cx="1252.35" cy="1854.75" r="25" class="map-pin-circle" />
             <text x="1252.35" y="1854.75" class="map-pin-emoji">🏯</text>
           </a>
 
-          <a href="#region-setouchi-hokuriku" class="map-pin" aria-label="나오시마(세토내해) 지역으로 이동">
+          <a href="region/setouchi-hokuriku/index.html" class="map-pin" aria-label="나오시마(세토내해) 지역으로 이동">
             <title>🎨 세토내해 (나오시마)</title>
             <circle cx="1167.6" cy="1908.76" r="25" class="map-pin-circle" />
             <text x="1167.6" y="1908.76" class="map-pin-emoji">🎨</text>
           </a>
 
-          <a href="#region-fukuoka" class="map-pin" aria-label="규슈(후쿠오카) 지역으로 이동">
+          <a href="region/fukuoka/index.html" class="map-pin" aria-label="규슈(후쿠오카) 지역으로 이동">
             <title>🍜 규슈 (후쿠오카)</title>
             <circle cx="1096.33" cy="1909.42" r="25" class="map-pin-circle" />
             <text x="1096.33" y="1909.42" class="map-pin-emoji">🍜</text>
           </a>
 
-          <a href="#region-okinawa" class="map-pin" aria-label="오키나와(나하) 지역으로 이동">
+          <a href="region/okinawa/index.html" class="map-pin" aria-label="오키나와(나하) 지역으로 이동">
             <title>🌺 오키나와 (나하)</title>
             <circle cx="1524.26" cy="1960.37" r="25" class="map-pin-circle" />
             <text x="1524.26" y="1960.37" class="map-pin-emoji">🌺</text>
@@ -127,30 +127,30 @@
       </div>
 
       <div class="region-grid">
-        <article class="region-card" id="region-osaka">
+        <a class="region-card" href="region/osaka/index.html">
           <h3><span class="region-emoji" aria-hidden="true">🏯</span>간사이 (오사카)</h3>
           <p>오사카를 중심으로 한 시내 여행 정보와 근교 당일치기 코스.</p>
-        </article>
-        <article class="region-card" id="region-tokyo">
+        </a>
+        <a class="region-card" href="region/tokyo/index.html">
           <h3><span class="region-emoji" aria-hidden="true">🗼</span>간토 (도쿄)</h3>
           <p>메이저 관광지를 벗어난 동네 단위의 로컬 정보.</p>
-        </article>
-        <article class="region-card" id="region-fukuoka">
+        </a>
+        <a class="region-card" href="region/fukuoka/index.html">
           <h3><span class="region-emoji" aria-hidden="true">🍜</span>규슈 (후쿠오카 &middot; 벳푸 &middot; 다자이후 &middot; 우레시노)</h3>
           <p>후쿠오카를 거점으로 한 시내·온천·근교 당일치기 정보.</p>
-        </article>
-        <article class="region-card" id="region-okinawa">
+        </a>
+        <a class="region-card" href="region/okinawa/index.html">
           <h3><span class="region-emoji" aria-hidden="true">🌺</span>오키나와 (나하)</h3>
           <p>국제거리를 중심으로 한 시내 여행 정보.</p>
-        </article>
-        <article class="region-card" id="region-sapporo">
+        </a>
+        <a class="region-card" href="region/sapporo/index.html">
           <h3><span class="region-emoji" aria-hidden="true">❄️</span>홋카이도 (삿포로)</h3>
           <p>겨울 시즌 축제 동선 등 계절성 여행 정보.</p>
-        </article>
-        <article class="region-card" id="region-setouchi-hokuriku">
+        </a>
+        <a class="region-card" href="region/setouchi-hokuriku/index.html">
           <h3><span class="region-emoji" aria-hidden="true">🎨</span>세토내해 &middot; 호쿠리쿠 (나오시마 &middot; 가나자와)</h3>
           <p>오사카에서 다녀올 수 있는 예술섬과 세컨 시티 여행 정보.</p>
-        </article>
+        </a>
       </div>
     </section>
 
