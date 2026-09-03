@@ -1,0 +1,160 @@
+/*
+ * 임시 기본 디자인 톤 (니치 확정 전)
+ * ------------------------------------------------------------
+ * 이 스타일은 특정 브랜드 컬러나 업종 느낌을 가정하지 않은
+ * "무난한 중립 기본값"입니다. 기획팀이 사이트 주제를 확정하면
+ * 아래 CSS 변수(색상 팔레트)만 교체해서 실제 브랜드 톤으로
+ * 전환하는 것을 전제로 설계되었습니다.
+ * 라이트/다크 모드를 모두 고려했습니다 (prefers-color-scheme).
+ * ------------------------------------------------------------
+ */
+
+:root {
+  /* 색상 팔레트 (라이트 기본값) */
+  --color-bg: #ffffff;
+  --color-surface: #f7f7f8;
+  --color-border: #e2e2e6;
+  --color-text: #1f2124;
+  --color-text-muted: #6b6f76;
+  --color-accent: #3a5ce5;
+  --color-accent-contrast: #ffffff;
+
+  /* 타이포그래피 스케일 */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR",
+    sans-serif;
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.125rem;
+  --font-size-h1: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --line-height-base: 1.7;
+  --line-height-tight: 1.3;
+
+  /* 레이아웃 */
+  --content-max-width: 720px;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --radius-md: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #14151a;
+    --color-surface: #1c1e24;
+    --color-border: #2c2f38;
+    --color-text: #eceef1;
+    --color-text-muted: #9a9fab;
+    --color-accent: #7b93ff;
+    --color-accent-contrast: #0f1115;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: var(--line-height-base);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: from-font;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 표/코드블록 등 폭이 넓은 요소가 페이지를 옆으로 밀지 않도록 */
+table,
+pre {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+}
+
+.site-header {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  font-weight: 700;
+}
+
+.site-main {
+  flex: 1 0 auto;
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+}
+
+.site-main p {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+.site-footer {
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* 좁은 화면(모바일) 여백 축소 */
+@media (max-width: 480px) {
+  .site-header,
+  .site-main,
+  .site-footer {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
+  .site-header {
+    padding-top: var(--space-3);
+  }
+
+  .site-main {
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+  }
+}
