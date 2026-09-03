@@ -166,12 +166,59 @@ pre {
   max-width: var(--content-max-width-wide);
 }
 
-/* 아주 넓은 화면에서는 완전한 중앙 정렬 대신 살짝 왼쪽으로 쏠리게 배치해
-   페이지 전체가 하나의 딱딱한 중앙 기둥처럼 보이지 않게 한다. */
+/* 넓은 화면에서 컨테이너를 왼쪽으로 밀어버리면 오른쪽에 빈 공간만 커지므로
+   중앙 정렬을 유지한다(위 .site-header, .site-main의 margin: 0 auto).
+   넓은 화면을 채우는 역할은 사진 중심 섹션의 full-bleed 확장이 담당한다
+   (아래 "넓은 화면 full-bleed 섹션" 참고). */
+
+/* ------------------------------------------------------------
+ * 넓은 화면 full-bleed 섹션 (1300px~)
+ * 본문 컨테이너(.site-header/.site-main)는 계속 중앙 정렬된 좁은 폭을 쓰지만,
+ * 사진이 주가 되는 섹션(홈 히어로, 지역 카드 그리드, 지역 허브 히어로 이미지)만
+ * 컨테이너 폭 제한을 벗어나 뷰포트 끝까지 채운다. 글 읽는 영역(about/contact/
+ * privacy, post-header/post-section 등)은 건드리지 않아 가독성을 유지한다.
+ * ------------------------------------------------------------ */
 @media (min-width: 1300px) {
-  .site-header,
-  .site-main {
-    margin-left: clamp(var(--space-3), 4vw, 8rem);
+  .page-home .hero,
+  .page-home .regions-section,
+  .page-region .post-hero-image {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    border-radius: 0;
+  }
+
+  /* full-bleed로 확장된 섹션 내부는 좌우 끝에 사진/카드가 딱 붙지 않도록 여백만
+     주되, 그 여백의 상한을 낮게 잡아 화면이 넓어질수록 콘텐츠(카드 그리드,
+     히어로 텍스트)의 실제 폭 자체가 함께 늘어나도록 한다(콘텐츠 폭을 1180px로
+     다시 가두지 않음 — 그러면 배경만 넓어지고 카드는 그대로라 빈 느낌이 남는다). */
+  .page-home .hero {
+    padding-left: clamp(var(--space-4), 5vw, 7rem);
+    padding-right: clamp(var(--space-4), 5vw, 7rem);
+  }
+
+  .page-home .regions-section {
+    padding-left: clamp(var(--space-3), 4vw, 6rem);
+    padding-right: clamp(var(--space-3), 4vw, 6rem);
+  }
+
+  /* 히어로에는 사진이 없어 배경 카드만 넓어지면 텍스트(제목·문단은 각각
+     18ch/56ch로 폭이 제한됨)가 왼쪽에 붙고 오른쪽만 휑하게 남는다.
+     카드 자체를 가운데 정렬 플렉스로 바꿔 제목·문단·배지를 화면 중앙에 두고,
+     텍스트 자체는 왼쪽 정렬을 유지해 읽기 자연스러운 문단 형태를 살린다. */
+  .page-home .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 지도는 원래 280px 고정폭이라, regions-section이 넓어진 만큼 지도 박스까지
+     늘어나면 지도 하나만 덩그러니 놓인 빈 액자처럼 보인다. 지도 박스 폭은
+     지도 크기에 맞춰 다시 좁혀 가운데에 두고, 카드 그리드만 전체 폭을 쓴다. */
+  .page-home .japan-map-wrap {
+    max-width: 420px;
+    margin-left: auto;
     margin-right: auto;
   }
 }
@@ -741,7 +788,10 @@ a:focus-visible,
 
 /* 지역 허브 페이지: 히어로 사진은 넓어진 컨테이너 폭을 그대로 채우고,
    제목·목록 등 읽는 영역은 좁은 컬럼으로 다시 줄여 왼쪽으로 붙인다.
-   (가운데 정렬 대신 사진 왼쪽 끝에 맞춰 자연스러운 리듬을 만든다) */
+   (가운데 정렬 대신 사진 왼쪽 끝에 맞춰 자연스러운 리듬을 만든다.
+   이 구간(860~1299px)에서는 히어로 사진이 아직 full-bleed로 확장되지 않고
+   .site-main 폭에 맞춰 있으므로, 텍스트를 그 안에서 왼쪽으로 붙여도
+   사진의 왼쪽 끝과 자연스럽게 맞아떨어진다.) */
 @media (min-width: 860px) {
   .page-region .post-header,
   .page-region .post-section,
@@ -749,6 +799,19 @@ a:focus-visible,
     max-width: 640px;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+/* 1300px 이상에서는 히어로 사진이 뷰포트 끝까지 full-bleed로 확장되므로,
+   텍스트를 사진의 왼쪽 끝(뷰포트 끝)에 맞춰 붙이면 화면 중앙에 텍스트가 붕
+   뜨고 오른쪽이 비어 보인다. 대신 텍스트 컬럼은 페이지 중앙으로 정렬해
+   사진(전체 폭)과 텍스트(중앙 컬럼)가 각각의 리듬으로 자연스럽게 이어지게 한다. */
+@media (min-width: 1300px) {
+  .page-region .post-header,
+  .page-region .post-section,
+  .page-region .post-footer {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
