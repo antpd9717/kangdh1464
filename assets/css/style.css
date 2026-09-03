@@ -285,30 +285,33 @@ pre {
 .japan-map {
   display: block;
   width: 100%;
-  max-width: 260px;
+  max-width: 280px;
   margin: 0 auto;
 }
 
+/* 실제 일본 지도 SVG(퍼블릭 도메인, viewBox 570x755) 기반 실루엣.
+   지역 구분을 위한 색칠 없이 단일 톤으로 통일한다. */
 .map-land {
   fill: var(--color-accent-soft);
   stroke: var(--color-accent);
-  stroke-width: 1.5;
+  stroke-width: 2.8;
   stroke-linejoin: round;
 }
 
 .map-land-small {
-  stroke-width: 1.25;
+  stroke-width: 2.4;
 }
 
 .map-inset-box {
   fill: none;
   stroke: var(--color-border);
-  stroke-width: 1.5;
-  stroke-dasharray: 4 3;
+  stroke-width: 2.8;
+  stroke-dasharray: 8 6;
+  stroke-linejoin: round;
 }
 
 .map-inset-label {
-  font-size: 8px;
+  font-size: 12px;
   fill: var(--color-text-muted);
   font-family: var(--font-sans);
 }
@@ -320,7 +323,7 @@ pre {
 .map-pin-circle {
   fill: var(--color-accent-2);
   stroke: var(--color-accent-contrast);
-  stroke-width: 1.5;
+  stroke-width: 3;
   filter: drop-shadow(0 2px 3px rgba(15, 46, 41, 0.25));
   transition: transform 0.15s ease, fill 0.15s ease;
   transform-origin: center;
@@ -328,7 +331,7 @@ pre {
 }
 
 .map-pin-emoji {
-  font-size: 13px;
+  font-size: 25px;
   text-anchor: middle;
   dominant-baseline: middle;
   pointer-events: none;
@@ -346,7 +349,7 @@ pre {
 
 .map-pin:focus-visible .map-pin-circle {
   stroke: var(--color-accent);
-  stroke-width: 2.5;
+  stroke-width: 4.75;
 }
 
 /* 좁은 화면에서는 지도가 클릭 정확도가 떨어지므로 숨기고,
