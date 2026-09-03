@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  주의: 아래 <loc> 값의 https://example.com 은 실제 배포 도메인이 아닙니다.
+  실제 배포 도메인이 확정되면 example.com을 그 도메인으로 반드시 교체해야 합니다.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/content/osaka-breakfast/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/content/naoshima-day-trip/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/content/ureshino-onsen/</loc>
+  </url>
+</urlset>
