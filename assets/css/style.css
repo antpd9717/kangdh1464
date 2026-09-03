@@ -287,8 +287,8 @@ a:focus-visible,
   font-weight: 500;
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
-  background-color: transparent;
-  border: 1px solid transparent;
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -299,18 +299,30 @@ a:focus-visible,
   border-color: var(--color-border);
 }
 
-/* 히어로: 초록→파랑 그라디언트 카드 + 은은한 도트 텍스처로 임팩트를 준다 */
+/* 히어로: 마이리얼트립 참고 — 흰색/옅은 배경 위주로 가볍게, 초록·파랑은
+   eyebrow 배지와 밑줄 정도의 포인트로만 사용한다 (사진 카드가 주인공). */
 .hero {
   position: relative;
   margin-top: var(--space-3);
   margin-bottom: var(--space-6);
-  padding: var(--space-5) var(--space-4);
+  padding: var(--space-4) var(--space-4);
   border-radius: var(--radius-xl);
-  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.16) 1px, transparent 0),
-    linear-gradient(135deg, var(--color-cta-grad-start), var(--color-cta-grad-end));
-  background-size: 20px 20px, auto;
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 var(--space-2);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .hero h1 {
@@ -319,15 +331,17 @@ a:focus-visible,
   font-weight: 700;
   line-height: var(--line-height-tight);
   letter-spacing: -0.015em;
-  color: var(--color-cta-text);
+  color: var(--color-text);
   margin: 0 0 var(--space-2);
   max-width: 18ch;
+  border-bottom: 3px solid var(--color-accent-soft);
+  padding-bottom: var(--space-2);
 }
 
 .hero p {
   margin: 0;
   font-size: var(--font-size-lg);
-  color: var(--color-cta-text-muted);
+  color: var(--color-text-muted);
   max-width: 56ch;
 }
 
@@ -459,13 +473,16 @@ a:focus-visible,
   gap: var(--space-3);
 }
 
+/* 지역 카드: 마이리얼트립 스타일 — 실사 사진 썸네일이 시각적 무게 중심,
+   텍스트는 사진 아래 얇은 영역에 정리한다. */
 .region-card {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background-color: var(--color-surface);
-  padding: var(--space-3) var(--space-2) var(--space-4);
   box-shadow: var(--shadow-sm);
   color: inherit;
   text-decoration: none;
@@ -476,6 +493,30 @@ a:focus-visible,
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
   border-color: var(--color-accent);
+}
+
+/* 이미지가 로드되기 전/실패 시에도 자리가 무너지지 않도록 aspect-ratio +
+   배경색으로 카드 높이를 미리 확보한다. */
+.region-card-media {
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-surface-alt);
+  overflow: hidden;
+}
+
+.region-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.region-card:hover .region-card-media img {
+  transform: scale(1.05);
+}
+
+.region-card-body {
+  padding: var(--space-2) var(--space-2) var(--space-4);
 }
 
 .region-card h3 {
@@ -611,6 +652,19 @@ a:focus-visible,
 .breadcrumb a:hover {
   color: var(--color-accent);
   border-bottom-color: currentColor;
+}
+
+/* 지역 허브 페이지 히어로 이미지: 페이지 진입 시 사진이 먼저 보이도록 상단에 배치.
+   로드 전/실패 시에도 레이아웃이 무너지지 않게 aspect-ratio + 배경색으로 공간을 확보한다. */
+.post-hero-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0 0 var(--space-3);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-alt);
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
 }
 
 .post-region {
