@@ -42,18 +42,35 @@
 
       <section class="post-section">
         <h2>이 지역 글 목록</h2>
+
+        <div class="article-filters" hidden>
+          <div class="filter-row" role="group" aria-label="소지역 필터">
+            <button type="button" class="filter-pill is-active" data-filter-type="subarea" data-filter-value="all" aria-pressed="true">전체</button>
+            <button type="button" class="filter-pill" data-filter-type="subarea" data-filter-value="우레시노" aria-pressed="false">우레시노</button>
+            <button type="button" class="filter-pill" data-filter-type="subarea" data-filter-value="후쿠오카 시내" aria-pressed="false">후쿠오카 시내</button>
+            <button type="button" class="filter-pill" data-filter-type="subarea" data-filter-value="벳푸" aria-pressed="false">벳푸</button>
+            <button type="button" class="filter-pill" data-filter-type="subarea" data-filter-value="다자이후" aria-pressed="false">다자이후</button>
+            <button type="button" class="filter-pill" data-filter-type="subarea" data-filter-value="나카스(후쿠오카 시내)" aria-pressed="false">나카스(후쿠오카 시내)</button>
+          </div>
+          <div class="filter-row" role="group" aria-label="카테고리 필터">
+            <button type="button" class="filter-pill is-active" data-filter-type="category" data-filter-value="all" aria-pressed="true">전체</button>
+            <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="할것" aria-pressed="false">🗺️ 할 것</button>
+            <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="먹을것" aria-pressed="false">🍽️ 먹을 것</button>
+          </div>
+        </div>
+
         <div class="article-subgroup">
           <p class="article-subgroup-title">🗺️ 할 것</p>
           <ul class="article-list">
-            <li class="article-item is-pending">
+            <li class="article-item is-pending" data-subarea="우레시노" data-category="할것">
               <span>우레시노 온천 당일치기 가이드 (미인온천&middot;족탕&middot;온천두부)</span>
               <span class="badge badge-pending">준비중</span>
             </li>
-            <li class="article-item is-pending">
+            <li class="article-item is-pending" data-subarea="후쿠오카 시내" data-category="할것">
               <span>후쿠오카 8월 여행 실전 가이드 (폭염&middot;태풍&middot;오봉 성수기 대처법)</span>
               <span class="badge badge-pending">준비중</span>
             </li>
-            <li class="article-item is-pending">
+            <li class="article-item is-pending" data-subarea="벳푸" data-category="할것">
               <span>벳푸 당일치기 코스 (후쿠오카에서 지옥순례 + 온천)</span>
               <span class="badge badge-pending">준비중</span>
             </li>
@@ -62,16 +79,17 @@
         <div class="article-subgroup">
           <p class="article-subgroup-title">🍽️ 먹을 것</p>
           <ul class="article-list">
-            <li class="article-item is-pending">
+            <li class="article-item is-pending" data-subarea="다자이후" data-category="먹을것">
               <span>다자이후 텐만구 우메가에모찌 맛집 비교 + 근처 가볼만한곳</span>
               <span class="badge badge-pending">준비중</span>
             </li>
-            <li class="article-item is-pending">
+            <li class="article-item is-pending" data-subarea="나카스(후쿠오카 시내)" data-category="먹을것">
               <span>후쿠오카 나카스 야타이 첫방문 실전 가이드 (자리잡기&middot;현금&middot;메뉴 주문법)</span>
               <span class="badge badge-pending">준비중</span>
             </li>
           </ul>
         </div>
+        <p class="article-empty-state" hidden>조건에 맞는 글이 아직 없습니다. 다른 필터를 선택해 보세요.</p>
       </section>
     </article>
   </main>

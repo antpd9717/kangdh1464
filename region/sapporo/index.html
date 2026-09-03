@@ -42,15 +42,29 @@
 
       <section class="post-section">
         <h2>이 지역 글 목록</h2>
+
+        <div class="article-filters" hidden>
+          <div class="filter-row" role="group" aria-label="소지역 필터">
+            <button type="button" class="filter-pill is-active" data-filter-type="subarea" data-filter-value="all" aria-pressed="true">전체</button>
+            <button type="button" class="filter-pill" data-filter-type="subarea" data-filter-value="삿포로 시내" aria-pressed="false">삿포로 시내</button>
+          </div>
+          <div class="filter-row" role="group" aria-label="카테고리 필터">
+            <button type="button" class="filter-pill is-active" data-filter-type="category" data-filter-value="all" aria-pressed="true">전체</button>
+            <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="할것" aria-pressed="false">🗺️ 할 것</button>
+            <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="먹을것" aria-pressed="false">🍽️ 먹을 것</button>
+          </div>
+        </div>
+
         <div class="article-subgroup">
           <p class="article-subgroup-title">🗺️ 할 것</p>
           <ul class="article-list">
-            <li class="article-item is-pending">
+            <li class="article-item is-pending" data-subarea="삿포로 시내" data-category="할것">
               <span>삿포로 눈축제 3대 회장(오도리&middot;스스키노&middot;쓰도무) 동선 총정리</span>
               <span class="badge badge-pending">준비중</span>
             </li>
           </ul>
         </div>
+        <p class="article-empty-state" hidden>조건에 맞는 글이 아직 없습니다. 다른 필터를 선택해 보세요.</p>
       </section>
     </article>
   </main>
