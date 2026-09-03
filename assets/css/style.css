@@ -161,6 +161,23 @@ pre {
   margin: 0;
 }
 
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.footer-nav a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: var(--color-accent);
+}
+
 /* 좁은 화면(모바일) 여백 축소 */
 @media (max-width: 480px) {
   .site-header,
