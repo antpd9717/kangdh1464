@@ -865,6 +865,83 @@ a:focus-visible,
   font-weight: 500;
 }
 
+/* 지역 허브: 스팟 디렉토리 카드
+   - .article-item(필터 대상 클래스)은 그대로 재사용해 기존 필터 로직
+     (data-subarea/data-category, hidden 토글)을 바꾸지 않고 그대로 태운다.
+   - .spot-card는 레이아웃만 이름+한줄설명이 세로로 쌓이는 카드형으로 override한다. */
+.spot-card {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  cursor: default;
+}
+
+.spot-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent);
+  border-left-color: var(--color-accent);
+}
+
+.spot-name {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.spot-desc {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.spot-note {
+  margin: 0;
+  padding: var(--space-1) var(--space-2);
+  border-left: 3px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+/* 홈페이지: 지역별 스팟 미리보기 (필터 없이 정적으로 2~3개만 노출) */
+.spot-preview-list {
+  list-style: none;
+  margin: 0 0 var(--space-1);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.spot-preview-list li {
+  font-size: var(--font-size-sm);
+}
+
+.spot-preview-list .spot-name {
+  font-size: inherit;
+  font-weight: 700;
+  display: inline;
+}
+
+.spot-preview-list .spot-desc {
+  display: inline;
+}
+
+.region-preview-link {
+  display: inline-block;
+  margin-top: 0.2rem;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.region-preview-link:hover {
+  border-bottom-color: currentColor;
+}
+
 /* 글(콘텐츠) 페이지 */
 
 .breadcrumb {
