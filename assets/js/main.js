@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
   initArticleFilters();
   initBackButton();
   initSpotMapLinks();
+  initSpotCategoryBadges();
+  initViewTabs();
 });
 
 // 상단 "뒤로가기" 버튼 (지역 허브/글/about·contact·privacy 페이지 공통)
@@ -74,11 +76,13 @@ function initSpotMapLinks() {
   });
 }
 
-// 지역 허브 페이지: 소지역/카테고리 필터
+// 지역 허브 페이지: 소지역/카테고리/음식 종류 필터
 // - progressive enhancement: 이 스크립트가 실행되어야만 필터 UI가 보인다
 //   (마크업에서 .article-filters는 기본 hidden — JS 없으면 전체 글 목록만 노출됨).
 // - 글 <li>는 절대 DOM에서 제거하지 않고 hidden 속성으로만 감춘다 (SEO/크롤링 보존).
-// - 소지역 필터와 카테고리 필터는 AND 조건으로 동시 적용된다.
+// - 소지역/카테고리/음식 종류 필터는 AND 조건으로 동시 적용된다.
+// - 음식 종류 필터는 "카테고리 = 먹을 것"일 때만 의미가 있다: 그 외에는
+//   (a) 필터 결과에 아예 영향을 주지 않도록 우회하고, (b) UI 줄도 감춘다.
 function initArticleFilters() {
   var filterBars = document.querySelectorAll(".article-filters");
 
@@ -91,8 +95,15 @@ function initArticleFilters() {
     var items = section.querySelectorAll(".article-item");
     var subgroups = section.querySelectorAll(".article-subgroup");
     var emptyState = section.querySelector(".article-empty-state");
+    var foodtypeRow = filterBar.querySelector(".filter-row-foodtype");
 
-    var state = { subarea: "all", category: "all" };
+    var state = { subarea: "all", category: "all", foodtype: "all" };
+
+    function updateFoodtypeRowVisibility() {
+      if (foodtypeRow) {
+        foodtypeRow.hidden = state.category !== "먹을것";
+      }
+    }
 
     function applyFilters() {
       var anyVisible = false;
@@ -102,7 +113,12 @@ function initArticleFilters() {
           state.subarea === "all" || item.getAttribute("data-subarea") === state.subarea;
         var matchesCategory =
           state.category === "all" || item.getAttribute("data-category") === state.category;
-        var visible = matchesSubarea && matchesCategory;
+        // 카테고리가 "먹을 것"이 아니면 음식 종류 필터는 결과에 영향을 주지 않는다.
+        var matchesFoodtype =
+          state.category !== "먹을것" ||
+          state.foodtype === "all" ||
+          item.getAttribute("data-foodtype") === state.foodtype;
+        var visible = matchesSubarea && matchesCategory && matchesFoodtype;
 
         item.hidden = !visible;
         if (visible) {
@@ -143,12 +159,77 @@ function initArticleFilters() {
           rowPill.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
 
+        if (type === "category") {
+          updateFoodtypeRowVisibility();
+        }
+
         applyFilters();
       });
     });
 
     // JS가 실행됐을 때만 필터 UI를 보여준다 (progressive enhancement).
     filterBar.hidden = false;
+    updateFoodtypeRowVisibility();
     applyFilters();
+  });
+}
+
+// 지역 허브 페이지: 스팟 카드에 할것(🗺️)/먹을것(🍽️) 구분 아이콘 추가
+// - "전체 동선 보기" 탭에서 소지역별로 할것/먹을것이 섞여 나열될 때
+//   카테고리를 구분할 수 있도록 카드마다 작은 아이콘을 붙인다.
+// - 평소(필터로 보기)에는 CSS로 감춰지고, .is-route-view일 때만 노출된다.
+function initSpotCategoryBadges() {
+  var cards = document.querySelectorAll(".spot-card");
+  cards.forEach(function (card) {
+    if (card.querySelector(".spot-category-badge")) {
+      return;
+    }
+
+    var category = card.getAttribute("data-category");
+    var nameEl = card.querySelector(".spot-name");
+    if (!category || !nameEl) {
+      return;
+    }
+
+    var badge = document.createElement("p");
+    badge.className = "spot-category-badge";
+    badge.setAttribute("aria-hidden", "true");
+    badge.textContent = category === "먹을것" ? "🍽️" : "🗺️";
+    card.insertBefore(badge, nameEl);
+  });
+}
+
+// 지역 허브 페이지: "필터로 보기" / "전체 동선 보기" 탭
+// - progressive enhancement: JS 없으면 .view-tabs는 hidden으로 감춰지고,
+//   필터도 적용되지 않은 전체 스팟 목록이 그대로 노출된다.
+// - "전체 동선 보기"는 실제 도보 거리·소요 시간·방문 순서를 계산하지 않는다.
+//   단순히 문서에 나열된 소지역 순서 그대로, 그 소지역의 할것/먹을것 스팟을
+//   모두 한데 모아 보여주는 것뿐이다(현재 필터 선택 상태와 무관하게 전체 노출).
+function initViewTabs() {
+  var tabBars = document.querySelectorAll(".view-tabs");
+
+  tabBars.forEach(function (tabBar) {
+    var section = tabBar.closest(".post-section");
+    if (!section) {
+      return;
+    }
+
+    var tabs = tabBar.querySelectorAll(".view-tab");
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var view = tab.getAttribute("data-view");
+
+        tabs.forEach(function (t) {
+          var isActive = t === tab;
+          t.classList.toggle("is-active", isActive);
+          t.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        section.classList.toggle("is-route-view", view === "route");
+      });
+    });
+
+    // JS가 실행됐을 때만 탭 UI를 보여준다 (progressive enhancement).
+    tabBar.hidden = false;
   });
 }

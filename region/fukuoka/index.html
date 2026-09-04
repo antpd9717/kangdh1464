@@ -45,6 +45,11 @@
         <h2>이 지역 스팟 둘러보기</h2>
         <p class="section-note">소지역과 카테고리를 선택하면 실제로 가볼 만한 곳/먹을 곳이 바로 아래에 나옵니다.</p>
 
+        <div class="view-tabs" hidden role="tablist" aria-label="스팟 보기 방식">
+          <button type="button" class="view-tab filter-pill is-active" data-view="filter" role="tab" aria-selected="true">필터로 보기</button>
+          <button type="button" class="view-tab filter-pill" data-view="route" role="tab" aria-selected="false">전체 동선 보기</button>
+        </div>
+
         <div class="article-filters" hidden>
           <div class="filter-row" role="group" aria-label="소지역 필터">
             <button type="button" class="filter-pill is-active" data-filter-type="subarea" data-filter-value="all" aria-pressed="true">전체</button>
@@ -58,6 +63,12 @@
             <button type="button" class="filter-pill is-active" data-filter-type="category" data-filter-value="all" aria-pressed="true">전체</button>
             <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="할것" aria-pressed="false">🗺️ 할 것</button>
             <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="먹을것" aria-pressed="false">🍽️ 먹을 것</button>
+          </div>
+          <div class="filter-row filter-row-foodtype" hidden role="group" aria-label="음식 종류 필터">
+            <button type="button" class="filter-pill is-active" data-filter-type="foodtype" data-filter-value="all" aria-pressed="true">전체</button>
+            <button type="button" class="filter-pill" data-filter-type="foodtype" data-filter-value="라멘" aria-pressed="false">라멘</button>
+            <button type="button" class="filter-pill" data-filter-type="foodtype" data-filter-value="디저트·전통과자" aria-pressed="false">디저트&middot;전통과자</button>
+            <button type="button" class="filter-pill" data-filter-type="foodtype" data-filter-value="야타이·꼬치구이" aria-pressed="false">야타이&middot;꼬치구이</button>
           </div>
         </div>
 
@@ -120,11 +131,11 @@
         <div class="article-subgroup">
           <p class="article-subgroup-title">🍽️ 다자이후</p>
           <ul class="article-list">
-            <li class="article-item spot-card" data-subarea="다자이후" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="다자이후" data-category="먹을것" data-foodtype="디저트·전통과자">
               <p class="spot-name">마츠야(松屋)</p>
               <p class="spot-desc">다자이후 텐만구 참배길, 역에서 나와 가장 먼저 보이는 우메가에모찌(매화 모양 팥떡) 가게. 유리 너머로 만드는 모습을 볼 수 있음, 줄서는 인기점.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="다자이후" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="다자이후" data-category="먹을것" data-foodtype="디저트·전통과자">
               <p class="spot-name">야스타케(やす竹)</p>
               <p class="spot-desc">참배길의 우메가에모찌 판매점.</p>
             </li>
@@ -133,19 +144,19 @@
         <div class="article-subgroup">
           <p class="article-subgroup-title">🍽️ 나카스(후쿠오카 시내)</p>
           <ul class="article-list">
-            <li class="article-item spot-card" data-subarea="나카스(후쿠오카 시내)" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="나카스(후쿠오카 시내)" data-category="먹을것" data-foodtype="라멘">
               <p class="spot-name">나가하마 야마짱 나카스점(長浜やまちゃん)</p>
               <p class="spot-desc">1986년 포장마차로 시작한 라멘 명가. 돈코츠 라멘 전문.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="나카스(후쿠오카 시내)" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="나카스(후쿠오카 시내)" data-category="먹을것" data-foodtype="야타이·꼬치구이">
               <p class="spot-name">타케짱(タケちゃん)</p>
               <p class="spot-desc">나카스 카와바타역 도보 5분, 여성도 편하게 갈 수 있는 분위기. 쿠시야키&middot;돈코츠 라멘 취급.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="나카스(후쿠오카 시내)" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="나카스(후쿠오카 시내)" data-category="먹을것" data-foodtype="라멘">
               <p class="spot-name">히데짱 라멘</p>
               <p class="spot-desc">나카스의 오래된 라멘 노점. 하카타 라멘(돈코츠, 얇은 면) 전문.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="나카스(후쿠오카 시내)" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="나카스(후쿠오카 시내)" data-category="먹을것" data-foodtype="야타이·꼬치구이">
               <p class="spot-name">쿠로짱</p>
               <p class="spot-desc">미야자키 출신 주인이 운영, 숯불구이 지역산 닭고기 전문 야타이.</p>
             </li>

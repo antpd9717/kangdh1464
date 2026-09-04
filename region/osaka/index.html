@@ -45,6 +45,11 @@
         <h2>이 지역 스팟 둘러보기</h2>
         <p class="section-note">소지역과 카테고리를 선택하면 실제로 가볼 만한 곳/먹을 곳이 바로 아래에 나옵니다.</p>
 
+        <div class="view-tabs" hidden role="tablist" aria-label="스팟 보기 방식">
+          <button type="button" class="view-tab filter-pill is-active" data-view="filter" role="tab" aria-selected="true">필터로 보기</button>
+          <button type="button" class="view-tab filter-pill" data-view="route" role="tab" aria-selected="false">전체 동선 보기</button>
+        </div>
+
         <div class="article-filters" hidden>
           <div class="filter-row" role="group" aria-label="소지역 필터">
             <button type="button" class="filter-pill is-active" data-filter-type="subarea" data-filter-value="all" aria-pressed="true">전체</button>
@@ -57,44 +62,51 @@
             <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="할것" aria-pressed="false">🗺️ 할 것</button>
             <button type="button" class="filter-pill" data-filter-type="category" data-filter-value="먹을것" aria-pressed="false">🍽️ 먹을 것</button>
           </div>
+          <div class="filter-row filter-row-foodtype" hidden role="group" aria-label="음식 종류 필터">
+            <button type="button" class="filter-pill is-active" data-filter-type="foodtype" data-filter-value="all" aria-pressed="true">전체</button>
+            <button type="button" class="filter-pill" data-filter-type="foodtype" data-filter-value="라멘" aria-pressed="false">라멘</button>
+            <button type="button" class="filter-pill" data-filter-type="foodtype" data-filter-value="가정식·정식" aria-pressed="false">가정식&middot;정식</button>
+            <button type="button" class="filter-pill" data-filter-type="foodtype" data-filter-value="카페·브런치" aria-pressed="false">카페&middot;브런치</button>
+            <button type="button" class="filter-pill" data-filter-type="foodtype" data-filter-value="베이커리·분식" aria-pressed="false">베이커리&middot;분식</button>
+          </div>
         </div>
 
         <div class="article-subgroup">
           <p class="article-subgroup-title">🍽️ 우메다&middot;난바</p>
           <ul class="article-list">
-            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것" data-foodtype="가정식·정식">
               <p class="spot-name">신파치 식당 (우메다점)</p>
               <p class="spot-desc">생선구이 정식을 파는 조식 맛집. 숯불에 구워 즉석 제공, 생선정식 1인분 2,500~2,700엔대로 가성비 좋음.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것" data-foodtype="가정식·정식">
               <p class="spot-name">신파치 난바나카이도오리점</p>
               <p class="spot-desc">신파치 식당의 난바 지점. 생선구이 중심 일본 가정식.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것" data-foodtype="가정식·정식">
               <p class="spot-name">메시아 24시 센니치마에</p>
               <p class="spot-desc">난바역 인근 24시간 영업 일본 가정식 식당. 메뉴 다양, 가격 합리적.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것" data-foodtype="라멘">
               <p class="spot-name">하나마루켄 24시</p>
               <p class="spot-desc">난바역 인근 24시간 영업 라멘 전문점.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것" data-foodtype="카페·브런치">
               <p class="spot-name">마츠타케</p>
               <p class="spot-desc">난바역 인근 카페형 식당, 커피와 토스트로 아침식사 가능.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것" data-foodtype="베이커리·분식">
               <p class="spot-name">사키모토 베이커리</p>
               <p class="spot-desc">난바역 인근 베이커리 카페, 토스트&middot;샌드위치 판매.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것" data-foodtype="베이커리·분식">
               <p class="spot-name">하코유메</p>
               <p class="spot-desc">난바역 인근 주먹밥(오니기리) 전문점. 오전 6시 30분부터 영업, 주문 즉시 만들어 제공.</p>
             </li>
-            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것" data-foodtype="카페·브런치">
               <p class="spot-name">더 그랜드 카페</p>
               <p class="spot-desc">우메다역 도보 5분, 힐튼플라자웨스트 6층. 통창 뷰의 브런치 카페. (이른 아침 영업 여부는 확인 필요)</p>
             </li>
-            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것">
+            <li class="article-item spot-card" data-subarea="우메다·난바" data-category="먹을것" data-foodtype="카페·브런치">
               <p class="spot-name">소홀름 카페 다이닝 우메다(Soholm)</p>
               <p class="spot-desc">북유럽풍 카페, 통밀 팬케이크 전문. 이른 오픈 가능성은 있으나 정확한 오픈 시각은 확인 필요.</p>
             </li>
