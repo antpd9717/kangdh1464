@@ -10,7 +10,24 @@ document.addEventListener("DOMContentLoaded", function () {
   initSpotMapLinks();
   initSpotCategoryBadges();
   initViewTabs();
+  initRouteMapLinks();
 });
+
+// 스팟 카드 하나를 구글맵이 실제로 찾을 수 있는 검색어로 바꾼다.
+// - "(정확한 상호명 확인 필요)" 같은 확인-필요 표시는 검색어에서 제외.
+// - "스팟명 + 소지역명 + 지역 도시명 + 일본" 조합은 spot-map-link와 동일.
+function buildSpotMapQuery(card, regionCity) {
+  var nameEl = card.querySelector(".spot-name");
+  if (!nameEl) {
+    return "";
+  }
+  var name = nameEl.textContent.replace(/\s*\([^)]*확인[^)]*\)/g, "").trim();
+  var subarea = card.getAttribute("data-subarea") || "";
+  var queryParts = [name, subarea, regionCity, "일본"].filter(function (part) {
+    return part;
+  });
+  return queryParts.join(" ");
+}
 
 // 상단 "뒤로가기" 버튼 (지역 허브/글/about·contact·privacy 페이지 공통)
 // - 마크업의 href는 JS 없이도 동작하는 폴백 링크다(지역 허브는 홈으로,
@@ -51,20 +68,12 @@ function initSpotMapLinks() {
       return;
     }
 
-    var nameEl = card.querySelector(".spot-name");
-    if (!nameEl) {
+    var query = buildSpotMapQuery(card, regionCity);
+    if (!query) {
       return;
     }
-
-    // "(정확한 상호명 확인 필요)" 같은 확인-필요 표시는 검색어에서 제외
-    var name = nameEl.textContent.replace(/\s*\([^)]*확인[^)]*\)/g, "").trim();
-    var subarea = card.getAttribute("data-subarea") || "";
-    var queryParts = [name, subarea, regionCity, "일본"].filter(function (part) {
-      return part;
-    });
     var mapUrl =
-      "https://www.google.com/maps/search/?api=1&query=" +
-      encodeURIComponent(queryParts.join(" "));
+      "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query);
 
     var link = document.createElement("a");
     link.className = "spot-map-link";
@@ -231,5 +240,78 @@ function initViewTabs() {
 
     // JS가 실행됐을 때만 탭 UI를 보여준다 (progressive enhancement).
     tabBar.hidden = false;
+  });
+}
+
+// 지역 허브 페이지: "전체 동선 보기" 탭의 소지역 그룹마다 구글맵 길찾기
+// (Directions) 링크를 추가한다.
+// - 저희는 정확한 좌표·거리·소요 시간을 모른다. 대신 각 스팟을 개별 지도
+//   검색 링크(spot-map-link)와 동일한 방식("스팟명 + 소지역 + 지역 도시명 +
+//   일본")으로 만든 문자열을 구글맵 길찾기 URL의 origin/destination/waypoints에
+//   그대로 넘겨, 구글이 실제 지명을 찾아 계산한 실제 도보 경로를 그대로 연다.
+//   거리·시간·방문 순서를 저희가 직접 계산하거나 지어내지 않는다.
+// - 소지역에 스팟이 1개뿐이면 출발지=도착지가 되어 경로가 성립하지 않으므로
+//   버튼을 만들지 않는다(2개 이상인 소지역에만 표시).
+// - 경유지가 지나치게 많으면 구글맵 길찾기 링크가 제대로 동작하지 않을 수
+//   있어, 한 소지역당 최대 9개 스팟(문서에 나열된 순서 기준 처음 9개)까지만
+//   경로에 포함한다.
+var ROUTE_MAX_STOPS = 9;
+
+function initRouteMapLinks() {
+  var subgroups = document.querySelectorAll(".article-subgroup");
+  if (!subgroups.length) {
+    return;
+  }
+
+  var regionCity = document.body.getAttribute("data-map-region") || "";
+
+  subgroups.forEach(function (subgroup) {
+    if (subgroup.querySelector(".route-map-link")) {
+      return;
+    }
+
+    var title = subgroup.querySelector(".article-subgroup-title");
+    if (!title) {
+      return;
+    }
+
+    var cards = subgroup.querySelectorAll(".spot-card");
+    if (cards.length < 2) {
+      return;
+    }
+
+    var stops = Array.prototype.slice.call(cards, 0, ROUTE_MAX_STOPS);
+    var queries = stops
+      .map(function (card) {
+        return buildSpotMapQuery(card, regionCity);
+      })
+      .filter(function (query) {
+        return query;
+      });
+
+    if (queries.length < 2) {
+      return;
+    }
+
+    var origin = queries[0];
+    var destination = queries[queries.length - 1];
+    var waypoints = queries.slice(1, -1);
+
+    var routeUrl =
+      "https://www.google.com/maps/dir/?api=1" +
+      "&origin=" + encodeURIComponent(origin) +
+      "&destination=" + encodeURIComponent(destination) +
+      (waypoints.length
+        ? "&waypoints=" + waypoints.map(encodeURIComponent).join("|")
+        : "") +
+      "&travelmode=walking";
+
+    var link = document.createElement("a");
+    link.className = "route-map-link";
+    link.href = routeUrl;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = "🗺️ 이 구역 전체 동선을 지도에서 보기";
+    title.insertAdjacentElement("afterend", link);
   });
 }

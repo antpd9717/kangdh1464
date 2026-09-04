@@ -965,6 +965,29 @@ a:focus-visible,
   border-bottom-color: currentColor;
 }
 
+/* "전체 동선 보기" 탭: 소지역 그룹마다 구글맵 길찾기(도보 경로) 링크.
+   필터로 보기 탭에서는 의미가 없으므로 .is-route-view일 때만 노출한다. */
+.route-map-link {
+  display: none;
+  align-self: flex-start;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-cta-text);
+  text-decoration: none;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background-image: linear-gradient(135deg, var(--color-cta-grad-start), var(--color-cta-grad-end));
+  box-shadow: 0 4px 10px -4px rgba(15, 118, 110, 0.5);
+}
+
+.route-map-link:hover {
+  opacity: 0.9;
+}
+
+.post-section.is-route-view .route-map-link {
+  display: inline-block;
+}
+
 .spot-note {
   margin: 0;
   padding: var(--space-1) var(--space-2);
