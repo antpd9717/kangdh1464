@@ -905,6 +905,20 @@ a:focus-visible,
   color: var(--color-text-muted);
 }
 
+/* 스팟 카드: 구글맵 검색 링크 (JS로 카드 하단에 추가됨) */
+.spot-map-link {
+  margin-top: 0.1rem;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.spot-map-link:hover {
+  border-bottom-color: currentColor;
+}
+
 .spot-note {
   margin: 0;
   padding: var(--space-1) var(--space-2);
@@ -969,6 +983,28 @@ a:focus-visible,
 .breadcrumb a:hover {
   color: var(--color-accent);
   border-bottom-color: currentColor;
+}
+
+/* 상단 "뒤로가기" 버튼: 브레드크럼 바로 아래, .filter-pill과 같은 알약형 톤 */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.back-button:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 /* 지역 허브 페이지 히어로 이미지: 페이지 진입 시 사진이 먼저 보이도록 상단에 배치.
