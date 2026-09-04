@@ -790,6 +790,16 @@ a:focus-visible,
   gap: var(--space-1);
 }
 
+/* 지역 허브 페이지는 .article-subgroup들이 (.article-regions 래퍼 없이)
+   .post-section의 직계 형제로 나열되므로, 소지역이 여러 개인 지역
+   (오사카·후쿠오카·세토내해 등)에서는 여백 없이 서로 붙어 보였다.
+   첫 subgroup은 바로 위 요소(.section-note/.article-filters)의
+   margin-bottom으로 이미 간격이 확보되므로, 두 번째 subgroup부터만
+   위쪽 여백을 추가한다. */
+.article-subgroup + .article-subgroup {
+  margin-top: var(--space-4);
+}
+
 .article-subgroup-title {
   margin: 0;
   font-size: var(--font-size-sm);

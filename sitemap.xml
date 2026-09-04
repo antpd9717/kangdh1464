@@ -8,6 +8,24 @@
     <loc>https://example.com/</loc>
   </url>
   <url>
+    <loc>https://example.com/region/osaka/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/region/tokyo/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/region/fukuoka/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/region/sapporo/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/region/okinawa/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/region/setouchi-hokuriku/</loc>
+  </url>
+  <url>
     <loc>https://example.com/content/osaka-breakfast/</loc>
   </url>
   <url>
@@ -15,5 +33,14 @@
   </url>
   <url>
     <loc>https://example.com/content/ureshino-onsen/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/about/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/contact/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/privacy/</loc>
   </url>
 </urlset>
