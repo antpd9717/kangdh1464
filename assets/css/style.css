@@ -1051,6 +1051,20 @@ a:focus-visible,
   max-width: 68ch;
 }
 
+/* 맛집·스팟 리스트 등 글 본문의 순수 <ul>(클래스 없는 원문 목록)만 대상으로
+   한다: 브라우저 기본 여백/불릿은 그대로 두되, 문단(68ch)과 줄 길이를 맞추고
+   항목 사이 간격을 넣어 이름(strong)과 설명이 섞인 긴 항목들이 서로 붙어
+   보이지 않게 한다. .related-list/.article-list처럼 이미 클래스로 자체
+   레이아웃(flex, 카드형 gap)을 갖는 목록은 :not([class])로 제외해 간격이
+   중복 적용되지 않게 한다. */
+.post-section ul:not([class]) {
+  max-width: 68ch;
+}
+
+.post-section ul:not([class]) li + li {
+  margin-top: var(--space-1);
+}
+
 .placeholder-block {
   margin: 0;
   padding: var(--space-2) var(--space-3);
