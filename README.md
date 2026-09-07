@@ -20,9 +20,9 @@
 │   └── setouchi-hokuriku/index.html
 ├── content/                       # 발행 글 (콘텐츠 캘린더 상위 우선순위 글부터 추가)
 │   ├── README.md                  # 글 추가 규칙
-│   ├── osaka-breakfast/index.html       # 구조만 완성, 본문은 "콘텐츠 작성 예정" placeholder
+│   ├── osaka-breakfast/index.html       # 본문 작성 완료, 각 지역 허브에서 링크 연결됨
 │   ├── naoshima-day-trip/index.html     # 위와 동일
-│   └── ureshino-onsen/index.html        # 위와 동일
+│   └── ureshino-onsen/index.html        # 위와 동일 ("예약 & 이동 정보" 섹션만 제휴 계약 전이라 placeholder)
 ├── about/, contact/, privacy/     # 소개/문의/개인정보처리방침 페이지
 ├── assets/
 │   ├── css/style.css              # 초록·파랑 톤 브랜드 스타일 (CSS 변수 기반)
@@ -53,9 +53,14 @@
 
 ## 다음 단계
 
-- `planning/content-plan.md`의 콘텐츠 캘린더 우선순위에 따라, `content/osaka-breakfast`,
-  `content/naoshima-day-trip`, `content/ureshino-onsen`의 placeholder 본문을 실제 콘텐츠로
-  채웁니다 (구조 뼈대는 이미 완성됨).
-- 캘린더의 나머지 글들도 순서대로 `content/<slug>/index.html`로 추가합니다.
+- 1주차 글(`content/osaka-breakfast`, `content/naoshima-day-trip`)과 2주차 글 중
+  `content/ureshino-onsen`은 본문 작성이 끝나 각 지역 허브(`region/osaka`, `region/fukuoka`,
+  `region/setouchi-hokuriku`)에서 링크로 연결된 상태입니다.
+- `planning/content-plan.md`의 "진행 순서 제안"에 따라, 2주차 나머지 글인 **가나자와 2박3일
+  가볼만한곳 + 맛집** 콘텐츠를 다음으로 작성해 `content/<slug>/index.html`로 추가합니다.
+  이후 3주차(도쿄 시모키타자와, 벳푸 당일치기) 순서로 이어갑니다.
+- 발행된 3개 글의 "예약 & 이동 정보" 섹션은 아직 제휴 계약 전이라 `placeholder-block`으로
+  링크 자리만 남아 있습니다. 제휴 계약이 정해지면 해당 섹션에 실제 예약 링크를 채워 넣어야
+  합니다.
 - `planning/spot-directory.md`의 스팟은 리서치 원자료이므로, 실제 페이지에 반영할 때 주소·
   영업시간 등 세부 정보를 별도로 검증해야 합니다.
