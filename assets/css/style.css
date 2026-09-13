@@ -875,9 +875,12 @@ a:focus-visible,
   color: var(--color-text-muted);
 }
 
-/* 스팟 카드: 구글맵 검색 링크 (JS로 카드 하단에 추가됨) */
+/* 스팟 카드: 구글맵 검색 링크 (JS로 카드 하단에 추가됨)
+   - 모바일에서 지도를 실제로 여는 주 진입점이라 터치 영역을 넉넉히 확보한다.
+     padding 없이 텍스트 줄높이(14px * line-height 1.7 ≈ 23.8px)만으로는
+     WCAG 2.5.8 최소 권장치(24px)에도 못 미쳐 상하 패딩으로 보강한다. */
 .spot-map-link {
-  margin-top: 0.1rem;
+  padding: var(--space-1) 0;
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-accent);
