@@ -1,4 +1,4 @@
-// 최소 기본 스크립트 - 주제/브랜드 확정 전 임시 골격
+// 최소 기본 스크립트 - 지역별 스팟 필터, 뒤로가기 버튼, 지도 핀 링크 처리
 document.addEventListener("DOMContentLoaded", function () {
   var yearEl = document.getElementById("year");
   if (yearEl) {
