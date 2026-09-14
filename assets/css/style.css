@@ -10,8 +10,6 @@
  * ------------------------------------------------------------
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap");
-
 :root {
   /* 색상 팔레트 (라이트 기본값) — 초록·파랑 톤 */
   --color-bg: #f4faf8;
