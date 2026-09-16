@@ -978,6 +978,15 @@ a:focus-visible,
   border-color: var(--color-accent);
 }
 
+/* 404 페이지: back-button이 다른 글 페이지들과 달리 breadcrumb 앞이 아니라
+   article(.post) 뒤에 온다. back-button 자체엔 margin-top이 없어 바로 위
+   목록/문단의 기본 여백에만 기대게 되어 붙어 보이므로, 다른 섹션 리듬과
+   같은 간격을 명시적으로 확보한다. (다른 페이지는 back-button이 .post
+   앞에 오므로 이 선택자의 영향을 받지 않는다.) */
+.post + .back-button {
+  margin-top: var(--space-4);
+}
+
 /* 지역 허브 페이지 히어로 이미지: 페이지 진입 시 사진이 먼저 보이도록 상단에 배치.
    로드 전/실패 시에도 레이아웃이 무너지지 않게 aspect-ratio + 배경색으로 공간을 확보한다. */
 .post-hero-image {
