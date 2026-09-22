@@ -77,6 +77,7 @@ function initSpotMapLinks() {
     link.href = mapUrl;
     link.target = "_blank";
     link.rel = "noopener";
+    link.setAttribute("aria-label", query + " 위치를 새 창에서 Google 지도로 보기");
     link.textContent = "📍 지도에서 보기";
     card.appendChild(link);
   });
