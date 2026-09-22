@@ -1225,3 +1225,109 @@ a:focus-visible,
     transform: none;
   }
 }
+
+/* ------------------------------------------------------------
+ * 인쇄(@media print)
+ * 방문자가 오사카 조식 맛집·나오시마 당일치기 등 글을 여행 중 참고하려고
+ * 인쇄해 가져가는 실사용 수요가 있어 인쇄 전용 스타일을 추가한다.
+ * - 색상은 기존 컴포넌트가 이미 CSS 변수만 참조하므로, :root 변수 자체를
+ *   흑백 톤으로 덮어써 배경·그림자·다크모드 배경까지 한 번에 제거한다
+ *   (개별 컴포넌트 규칙은 건드리지 않음).
+ * - 클릭이 불가능한 인터랙션 전용 UI(헤더 내비, 필터, 스킵 링크, JS로
+ *   추가되는 지도 링크, 아직 실제 링크가 없는 예약 자리표시자, 뒤로가기
+ *   버튼, 푸터 내비)는 인쇄에서 제외한다.
+ * - 글 제목/본문/스팟 목록 등 실제 콘텐츠는 그대로 노출된다.
+ * ------------------------------------------------------------ */
+@media print {
+  :root {
+    /* 다크모드(prefers-color-scheme: dark)와 동시에 적용돼도 항상
+       흰 배경 + 검은 텍스트가 되도록 변수 자체를 덮어쓴다 */
+    --color-bg: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-alt: #ffffff;
+    --color-border: #bbbbbb;
+    --color-text: #000000;
+    --color-text-muted: #333333;
+    --color-accent: #000000;
+    --color-accent-2: #000000;
+    --color-accent-contrast: #ffffff;
+    --color-accent-soft: #ffffff;
+    --color-cta-grad-start: #ffffff;
+    --color-cta-grad-end: #ffffff;
+    --color-cta-text: #000000;
+    --color-cta-text-muted: #000000;
+    --shadow-sm: none;
+    --shadow-md: none;
+  }
+
+  html {
+    -webkit-print-color-adjust: economy;
+    print-color-adjust: economy;
+  }
+
+  * ,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+  }
+
+  /* 브랜드 그라디언트 바(장식용)는 인쇄에서 의미가 없어 제거 */
+  body::before {
+    display: none;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: underline;
+  }
+
+  /* 종이에서는 클릭할 수 없는 내비게이션·인터랙션 전용 UI */
+  .skip-link,
+  .site-nav,
+  .article-filters,
+  .spot-map-link,
+  .back-button,
+  .footer-nav {
+    display: none !important;
+  }
+
+  /* 아직 실제 링크가 없는 "예약 & 이동 정보" 자리표시자 섹션 전체를 숨긴다
+     (제목만 남고 내용이 없는 빈 섹션이 인쇄되지 않도록 .placeholder-block을
+     담은 post-section 자체를 대상으로 함) */
+  .post-section:has(> .placeholder-block) {
+    display: none !important;
+  }
+
+  /* 위 규칙을 지원하지 않는 구형 브라우저를 위한 최소한의 대체 처리 */
+  .placeholder-block {
+    display: none !important;
+  }
+
+  /* 그라디언트 배경 위주였던 푸터는 배경이 사라지면 빈 여백만 남으므로
+     인쇄에서는 통째로 숨긴다 */
+  .site-footer {
+    display: none !important;
+  }
+
+  /* 섹션·목록 항목이 페이지 경계에서 어색하게 잘리지 않도록 최소한의 배려 */
+  .post-header,
+  .post-section,
+  .article-item,
+  .region-card {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid-page;
+  }
+}
