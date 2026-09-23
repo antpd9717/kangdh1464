@@ -919,6 +919,11 @@ a:focus-visible,
   border-bottom-color: currentColor;
 }
 
+.spot-map-link:focus-visible {
+  outline: 2px solid var(--color-accent-2);
+  outline-offset: 2px;
+}
+
 .spot-note {
   margin: 0;
   padding: var(--space-1) var(--space-2);
@@ -1005,6 +1010,11 @@ a:focus-visible,
 .back-button:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);
+}
+
+.back-button:focus-visible {
+  outline: 2px solid var(--color-accent-2);
+  outline-offset: 2px;
 }
 
 /* 404 페이지: back-button이 다른 글 페이지들과 달리 breadcrumb 앞이 아니라
