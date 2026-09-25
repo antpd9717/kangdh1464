@@ -995,6 +995,11 @@ a:focus-visible {
   border-bottom-color: currentColor;
 }
 
+.breadcrumb [aria-current="page"] {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
 /* 상단 "뒤로가기" 버튼: 브레드크럼 바로 아래, .filter-pill과 같은 알약형 톤 */
 .back-button {
   display: inline-flex;
