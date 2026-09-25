@@ -103,6 +103,7 @@ function initArticleFilters() {
     var subgroups = section.querySelectorAll(".article-subgroup");
     var emptyState = section.querySelector(".article-empty-state");
     var foodtypeRow = filterBar.querySelector(".filter-row-foodtype");
+    var filterStatus = section.querySelector(".filter-status");
 
     var state = { subarea: "all", category: "all", foodtype: "all" };
 
@@ -114,6 +115,7 @@ function initArticleFilters() {
 
     function applyFilters() {
       var anyVisible = false;
+      var visibleCount = 0;
 
       items.forEach(function (item) {
         var matchesSubarea =
@@ -130,6 +132,7 @@ function initArticleFilters() {
         item.hidden = !visible;
         if (visible) {
           anyVisible = true;
+          visibleCount++;
         }
       });
 
@@ -145,6 +148,12 @@ function initArticleFilters() {
 
       if (emptyState) {
         emptyState.hidden = anyVisible;
+      }
+
+      if (filterStatus) {
+        filterStatus.textContent = anyVisible
+          ? items.length + "개 중 " + visibleCount + "개 항목 표시 중"
+          : "조건에 맞는 항목이 없습니다.";
       }
     }
 
