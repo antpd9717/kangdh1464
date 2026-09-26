@@ -1094,6 +1094,15 @@ a:focus-visible {
   line-height: var(--line-height-tight);
 }
 
+/* 각 글의 도입부 요약 문단: 홈페이지 히어로 리드 문단(.site-main > p)과
+   동일한 톤(연한 색·큰 글자)으로 맞춰 제목 아래 완충 역할을 하게 한다. */
+.post-intro {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  max-width: 68ch;
+}
+
 .post-section {
   margin-top: var(--space-4);
 }
