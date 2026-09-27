@@ -294,6 +294,13 @@ pre {
   border-bottom-color: currentColor;
 }
 
+/* 현재 페이지: hover/focus 없이도 다른 링크와 구분되도록 항상 강조 표시 */
+.footer-nav [aria-current="page"] {
+  color: var(--color-cta-text);
+  font-weight: 600;
+  border-bottom-color: currentColor;
+}
+
 /* 좁은 화면(모바일) 여백 축소 */
 @media (max-width: 480px) {
   .site-header,
