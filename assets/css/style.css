@@ -914,6 +914,15 @@ a:focus-visible {
   color: var(--color-text-muted);
 }
 
+/* 스팟 설명 안에서 "정보가 아직 확인되지 않았다"는 것을 알려주는 인라인 캡션.
+   에러/경고색을 새로 만들지 않고 기존 muted 텍스트 톤 + 점선 밑줄만으로
+   은은하게 구분한다 (라이트/다크/인쇄 모드는 --color-text-muted가 자동 대응). */
+.needs-check {
+  font-style: italic;
+  color: var(--color-text-muted);
+  border-bottom: 1px dotted var(--color-text-muted);
+}
+
 /* 스팟 카드: 구글맵 검색 링크 (JS로 카드 하단에 추가됨)
    - 모바일에서 지도를 실제로 여는 주 진입점이라 터치 영역을 넉넉히 확보한다.
      padding 없이 텍스트 줄높이(14px * line-height 1.7 ≈ 23.8px)만으로는
