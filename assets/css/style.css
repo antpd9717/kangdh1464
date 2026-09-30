@@ -571,6 +571,21 @@ a:focus-visible {
   }
 }
 
+/* 641px~1299px 구간: 지도는 641px 이상에서 다시 보이지만, 이 폭에서는
+   .page-home .site-main이 아직 1180px 규칙(위쪽 164~169행)을 적용받는 넓은
+   컨테이너를 그대로 쓴다. .japan-map-wrap 자체엔 원래 max-width가 없어
+   컨테이너 폭 전체로 늘어나는데, 안의 .japan-map은 280px 고정폭이라 카드
+   좌우로 빈 여백만 넓게 남는다(1300px 이상에서 이미 고친 것과 같은 문제,
+   위쪽 @media (min-width: 1300px) 블록의 주석 참고). 그 규칙과 같은 값으로
+   중간 구간에도 폭을 제한해 지도 카드가 액자처럼 붕 뜨지 않게 한다. */
+@media (min-width: 641px) and (max-width: 1299px) {
+  .page-home .japan-map-wrap {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .region-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -596,6 +611,19 @@ a:focus-visible {
 
   .region-grid .region-card:nth-child(1) .region-card-body {
     padding: var(--space-3) var(--space-3) var(--space-4);
+  }
+
+  /* 오사카 카드는 span 4로 그리드에서 가장 넓은 카드라, 세로 사진(900x1200)에
+     오키나와(span 2)처럼 aspect-ratio: 3/4를 그대로 쓰면 카드 높이가 지나치게
+     커져 옆 카드들과 비율이 어긋난다. 기존 4/3 가로 박스 비율은 유지하고,
+     크롭 위치만 아래로 옮긴다. 실제 사진은 위쪽 1/3이 나뭇가지·하늘이고
+     오사카성 본체(금장식 지붕~기단)는 사진 세로 기준 대략 33~79% 구간에
+     있어, 중앙 정렬(기본값) 그대로 두면 성 아랫부분(기단)이 잘리기 쉽다.
+     object-position을 아래쪽으로 이동시켜 상단 여분의 가지/하늘과 하단의
+     현대식 유리 구조물을 살짝 덜어내고 성 전체(첨탑~기단)가 프레임 안에
+     들어오도록 한다. */
+  .region-grid .region-card:nth-child(1) .region-card-media img {
+    object-position: center 65%;
   }
 
   .region-grid .region-card:nth-child(2) {
